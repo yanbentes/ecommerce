@@ -1,6 +1,7 @@
 <?php 
 
 namespace Hcode\DB;
+use \PDO;
 
 class Sql {
 
@@ -14,11 +15,9 @@ class Sql {
 	public function __construct()
 	{
 
-		$this->conn = new \PDO(
-			"mysql:dbname=".Sql::DBNAME.";host=".Sql::HOSTNAME, 
-			Sql::USERNAME,
-			Sql::PASSWORD
-		);
+		$this->conn = new PDO("mysql:host=localhost;dbname=db_ecommerce", "root", "", array(
+        	\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+    	));
 
 	}
 
