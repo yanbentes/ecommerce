@@ -39,6 +39,7 @@
                 <form method="post" action="/profile">
                     <div class="form-group">
                     <label for="desperson">Nome completo</label>
+                    <input type="hidden" name="iduser" value="<?php echo htmlspecialchars( $user["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     <div class="form-group">

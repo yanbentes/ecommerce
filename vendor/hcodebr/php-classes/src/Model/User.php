@@ -121,18 +121,18 @@ class User extends Model
     public function save()
     {
 
-    	$sql = new Sql();
+        $sql = new Sql();
 
-    	$results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
-    		":desperson"=>$this->getdesperson(),
-    		":deslogin"=>$this->getdeslogin(),
-    		":despassword"=>User::getPasswordHash($this->getdespassword()),
-    		":desemail"=>$this->getdesemail(),
-    		":nrphone"=>$this->getnrphone(),
-    		":inadmin"=>$this->getinadmin()
-    	));
+        $results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
+            ":desperson"=>utf8_decode($this->getdesperson()),
+            ":deslogin"=>$this->getdeslogin(),
+            ":despassword"=>User::getPasswordHash($this->getdespassword()),
+            ":desemail"=>$this->getdesemail(),
+            ":nrphone"=>$this->getnrphone(),
+            ":inadmin"=>$this->getinadmin()
+        ));
 
-    	$this->setData($results[0]);
+        $this->setData($results[0]);
     }
 
     public function get($iduser)
@@ -152,20 +152,18 @@ class User extends Model
 
     public function update()
     {
+        $sql = new Sql();
+        $results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin);", array(
+            ":iduser"=>$this->getiduser(),
+            ":desperson"=>$this->getdesperson(),
+            ":deslogin"=>$this->getdeslogin(),
+            ":despassword"=>$this->getdespassword(),
+            ":desemail"=>$this->getdesemail(),
+            ":nrphone"=>$this->getnrphone(),
+            ":inadmin"=>$this->getinadmin()
+        ));
 
-    	$sql = new Sql();
-
-    	$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
-    		":iduser"=>$this->getiduser(),
-    		":desperson"=>$this->getdesperson(),
-    		":deslogin"=>$this->getdeslogin(),
-    		":despassword"=>User::getPasswordHash($this->getdespassword()),
-    		":desemail"=>$this->getdesemail(),
-    		":nrphone"=>$this->getnrphone(),
-    		":inadmin"=>$this->getinadmin()
-    	));
-
-    	$this->setData($results[0]);
+        $this->setData($results[0]);
     }
 
     public function delete()
