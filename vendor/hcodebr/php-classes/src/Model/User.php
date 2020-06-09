@@ -152,6 +152,7 @@ class User extends Model
 
     public function update()
     {
+
         $sql = new Sql();
         $results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin);", array(
             ":iduser"=>$this->getiduser(),
