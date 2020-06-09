@@ -294,7 +294,7 @@ $app->get("/logout", function() {
 
     session_regenerate_id();
     
-    header("Location: /login");
+    header("Location:/login");
     exit;
 });
 
