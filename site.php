@@ -184,7 +184,7 @@ $app->post("/checkout", function() {
 
 	if(!isset($_POST["zipcode"]) || $_POST["zipcode"] === "") {
 
-		Addresss::setMsgError("Informe o CEP.");
+		Address::setMsgError("Informe o CEP.");
 		header("Location:/checkout");
 		exit;
 	}
