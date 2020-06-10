@@ -18,7 +18,7 @@ $app->get("/admin/users", function() {
 	}
 	else {
 
-		$pagination = User::getPage($page, 1);
+		$pagination = User::getPage($page);
 
 	}
 
