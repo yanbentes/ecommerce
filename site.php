@@ -579,7 +579,7 @@ $app->get("/profile/orders", function(){
 
 $app->get("/profile/orders/:idorder", function($idorder) {
 
-	User::verifyLogin();
+	User::verifyLogin(false);
 
 	$order = new Order();
 
